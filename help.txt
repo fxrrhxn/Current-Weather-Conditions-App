@@ -1,0 +1,11 @@
+In order to run the program use the following:
+gunicorn -c gunicorn_config.py weather_app:app
+
+
+If it doesnt work, use this command in the terminal:
+pkill -f "Python.*5000"
+
+
+If the gunicorn command keeps timing out, please use a different port for w.g:
+gunicorn -w 4 -b 0.0.0.0:8000 -k gevent --timeout 120 weather_app:app
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <title>Current Weather Conditions</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Current Weather Conditions</h1>
+      <form action="/" method="post">
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required />
+
+        <label for="units">Units:</label>
+        <input type="text" id="units" name="units" required />
+
+        <button type="submit">Get Weather</button>
+      </form>
+      {% if weather %}
+      <div class="result">
+        <p>
+          Current Weather for {{ weather.name }} ({{ weather.sys.country }}):
+        </p>
+        <p>The temperature is {{ weather.main.temp }}&deg; {{ unit_name }}</p>
+        <p>
+          Feels like {{ weather.main.feels_like }}&deg; {{ unit_name }} and {{
+          weather.weather[0].description }}
+        </p>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
